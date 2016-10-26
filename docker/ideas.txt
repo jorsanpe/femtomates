@@ -1,0 +1,2 @@
+# Ideas
+https://github.com/symbionext/DockerizedRobotFramework
