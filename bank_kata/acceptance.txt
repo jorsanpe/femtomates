@@ -1,0 +1,26 @@
+*** Settings ***
+Library           src/BankLibrary.py
+
+*** Test Cases ***
+print-statements
+    Given    client deposits    1000    on    10-01-2012
+    \    client deposits    2000    on    13-01-2012
+    \    client withdraws    500    on    14-01-2012
+
+deposit
+    Given client deposits    1000    on    10-01-2012
+    ${log}=    Print bank statement
+    User should see    ${log}    date || amount || balance\n10-01-2012 || 1000 || 1000
+
+*** Keywords ***
+client deposits
+    [Arguments]    ${amount}    ${on}    ${date}
+    Deposit    ${amount}    ${on}    ${date}
+
+print bank statement
+    ${out}=    Print Statements
+    [Return]    ${out}
+
+user should see
+    [Arguments]    ${string}    ${expect}
+    Should Be Equal As Strings    ${string}    ${expect}
