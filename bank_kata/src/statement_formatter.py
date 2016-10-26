@@ -3,9 +3,9 @@
 
 
 def format_operations(operations):
-    text = 'date || amount || balance\n'
+    text = 'date || amount || balance'
     balance = 0
-    for o in operations:
+    for o in reversed(operations):
         balance += o.amount
-        text += '%s || %d || %d' % (o.date, o.amount, balance)
+        text += '\n%s || %d || %d' % (o.date, o.amount, o.balance)
     return text

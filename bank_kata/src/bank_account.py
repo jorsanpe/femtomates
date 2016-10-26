@@ -9,13 +9,18 @@ class BankAccount(object):
 
     def deposit(self, amount, date):
         self.amount += amount
-        self.operations_repository.add(Operation(amount, date))
+        self.operations_repository.add(Operation(amount, date, self.amount))
 
-    def print_statements(self):
-        pass
+    def withdraw(self, amount, date):
+        self.amount -= amount
+        self.operations_repository.add(Operation(-amount, date, self.amount))
 
     def balance(self):
         return self.amount
 
     def operations(self):
         return self.operations_repository.operations
+
+    def deposits(self):
+        return self.operations_repository.deposits()
+
